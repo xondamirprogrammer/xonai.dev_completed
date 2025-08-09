@@ -716,9 +716,9 @@ function WhatYouGetSection() {
                       </div>
 
                       <div className="space-y-3">
-                        <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                        <h4 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
                           {item.title}
-                        </h3>
+                        </h4>
                         <p className="text-base sm:text-lg text-muted-foreground font-medium leading-relaxed">
                           {item.description}
                         </p>
@@ -1228,6 +1228,7 @@ function ContactSection() {
                       <p className="text-sm text-muted-foreground">Phone</p>
                       <a
                         href="tel:+998901326467"
+                        aria-label="Call us at +998901326467"
                         className="text-foreground font-medium hover:text-primary transition-colors duration-300"
                       >
                         +998901326467
@@ -1246,6 +1247,7 @@ function ContactSection() {
                       <p className="text-sm text-muted-foreground">Email</p>
                       <a
                         href="mailto:xmirsaidov5@gmail.com?subject=Project%20Inquiry&body=Hello,%20I'm%20interested%20in%20your%20AI%20services..."
+                        aria-label="Send us an email at xmirsaidov5@gmail.com"
                         className="text-foreground font-medium hover:text-primary transition-colors duration-300"
                       >
                         xmirsaidov5@gmail.com
@@ -1266,6 +1268,7 @@ function ContactSection() {
                         href="https://t.me/M_X_Mirsaidov"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Contact us on Telegram @M_X_Mirsaidov"
                         className="text-foreground font-medium hover:text-primary transition-colors duration-300"
                       >
                         @M_X_Mirsaidov
@@ -1514,9 +1517,9 @@ function AIAgentsIncluded() {
                       {feature.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      <h4 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                         {feature.title}
-                      </h3>
+                      </h4>
                       <p className="text-muted-foreground text-sm leading-relaxed">
                         {feature.description}
                       </p>
@@ -1609,9 +1612,9 @@ function AIAgentsPerfectFor() {
                     </div>
                     <div className="text-3xl">{client.emoji}</div>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h4 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     {client.title}
-                  </h3>
+                  </h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {client.description}
                   </p>
@@ -1826,6 +1829,7 @@ function AIAgentsContact() {
                     href="https://t.me/M_X_Mirsaidov"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Contact us on Telegram for fastest response"
                     className="inline-flex items-center space-x-2 text-primary font-medium hover:underline"
                   >
                     <Send className="w-4 h-4" />
@@ -1971,9 +1975,9 @@ function WhySmartWebsites() {
                     <div className={`absolute inset-0 w-20 h-20 rounded-2xl bg-gradient-to-r ${benefit.color} opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500 mx-auto`}></div>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                  <h4 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
                     {benefit.title}
-                  </h3>
+                  </h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {benefit.description}
                   </p>
@@ -2059,9 +2063,9 @@ function WhatsIncluded() {
                       {feature.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      <h4 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                         {feature.title}
-                      </h3>
+                      </h4>
                       <p className="text-muted-foreground text-sm leading-relaxed">
                         {feature.description}
                       </p>
@@ -2154,9 +2158,9 @@ function PerfectFor() {
                     </div>
                     <div>
                        <div className="text-3xl leading-none">{client.emoji}</div>
-                       <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight pt-1">
+                       <h4 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight pt-1">
                         {client.title}
-                      </h3>
+                      </h4>
                     </div>
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-lg">
@@ -2438,6 +2442,7 @@ function SmartWebsitesContact() {
                       href="https://t.me/M_X_Mirsaidov"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Contact us on Telegram for fastest response"
                       className="text-primary font-medium hover:underline"
                     >
                       @M_X_Mirsaidov

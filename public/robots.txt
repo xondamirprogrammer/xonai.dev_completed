@@ -1,8 +1,14 @@
 User-agent: *
 Allow: /
 
+# Google-specific directives for faster indexing
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
 # Sitemap
 Sitemap: https://xonai.dev/sitemap.xml
+Sitemap: https://xonai.dev/sitemap.xml
 
-# Crawl-delay for polite crawling
+# Crawl-delay for other bots
 Crawl-delay: 1

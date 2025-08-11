@@ -200,6 +200,12 @@ export default function SEOContent({ page }: SEOContentProps) {
       twitterDescription.setAttribute('content', content.metaDescription);
     }
     
+    // Force Google to recognize page changes
+    const metaRobots = document.querySelector('meta[name="robots"]');
+    if (metaRobots) {
+      metaRobots.setAttribute('content', 'index, follow, max-snippet:-1, max-image-preview:large');
+    }
+    
   }, [content]);
 
   return null;

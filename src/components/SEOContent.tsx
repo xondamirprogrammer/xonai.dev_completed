@@ -6,7 +6,7 @@ interface SEOContentProps {
 
 // SEO-optimized content for each page while preserving design
 export const seoContent = {
-  home: {
+  'home': {
     title: "Custom AI Automation Solutions | Language Centers, Clinics & Business AI Tools",
     metaDescription: "Custom AI automation solutions for language centers, clinics & businesses. AI-powered tools, smart websites & chatbots that boost efficiency. Get your AI assistant today!",
     urlSlug: "/",
@@ -37,7 +37,7 @@ export const seoContent = {
     }
   },
   
-  smartWebsites: {
+  'smart-websites': {
     title: "Smart Website Development | AI-Enhanced Business Websites",
     metaDescription: "Smart website development with AI integration. Responsive, fast-loading business websites with automation features. Perfect for modern businesses seeking growth.",
     urlSlug: "/smart-websites",
@@ -49,7 +49,7 @@ export const seoContent = {
     }
   },
   
-  aiAgents: {
+  'ai-agents': {
     title: "AI Agents and Chatbots for Business | Custom AI Assistants",
     metaDescription: "AI agents and chatbots for business automation. Custom AI assistants for appointment booking, customer service & sales. Perfect for clinics, language centers & e-commerce.",
     urlSlug: "/ai-agents-chatbots", 

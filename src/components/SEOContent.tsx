@@ -7,43 +7,43 @@ interface SEOContentProps {
 // World-Class SEO-optimized content for each page
 export const seoContent = {
   'home': {
-    title: "AI Automation for Language Centers & Clinics | xonai.dev",
-    metaDescription: "Custom AI automation solutions for language centers, clinics & businesses. AI-powered tools, smart websites & chatbots that boost efficiency. Get your AI assistant today!",
-    keywords: "custom AI automation solutions, AI-powered business tools, AI automation services, workflow automation, AI for businesses, smart website development, AI agents and chatbots for business, language center AI, clinic automation, small business AI",
+    title: "Complete AI Automation That Actually Works | Language Centers & Clinics",
+    metaDescription: "🚀 Beyond basic chatbots & booking software! Complete AI business automation for language centers & clinics. 40-60% time savings, 24/7 operations. See why we beat Gliglish, SimplyBook & others!",
+    keywords: "complete AI automation, language center management system, AI clinic automation, intelligent appointment booking, vs Gliglish vs SimplyBook vs TIMIFY, business process automation, AI-powered patient communication, language school administration software, medical practice automation, smart clinic management, AI workflow optimization, automated patient scheduling, language center enrollment automation, clinic communication system, AI business intelligence, complete automation vs basic chatbots, comprehensive clinic software, intelligent language center management",
     urlSlug: "/",
-    h1: "Build the future with Custom AI Automation Solutions",
-    h1Cycle: ["future", "intelligent", "automated", "efficient"],
-    subtitle: "Transform your language center, clinic, or business with cutting-edge AI automation solutions, smart websites, and AI-powered tools that work 24/7 while you focus on growth.",
-    longDescription: "Discover how custom AI automation can revolutionize your business operations. Our specialized AI solutions for language learning centers, medical clinics, and small businesses eliminate repetitive tasks, provide 24/7 customer service, and boost efficiency by up to 60%. From intelligent chatbots to complete workflow automation, we build AI that works seamlessly with your existing systems.",
+    h1: "Complete AI Automation That Actually Works (Unlike Basic Chatbots)",
+    h1Cycle: ["Complete", "Intelligent", "Superior", "Revolutionary"],
+    subtitle: "Why settle for basic chatbots like Gliglish or simple booking like SimplyBook? Get COMPLETE AI business automation for language centers & clinics. 40-60% efficiency boost, 24/7 operations, 300-500% ROI.",
+    longDescription: "Finally, AI automation that goes beyond basic chatbots and appointment booking! While competitors like Gliglish only handle conversations and SimplyBook only manages appointments, our complete automation transforms your entire business. Language centers and medical clinics choose us for comprehensive enrollment management, intelligent patient communication, automated workflows, and complete operational optimization. Stop piecing together multiple basic tools - get one intelligent system that handles everything.",
     services: {
       'smart-websites': {
-        title: "Smart Website Development with AI Integration",
-        description: "AI-enhanced responsive websites with built-in automation features, intelligent chatbots, and conversion optimization for superior user experience and business growth."
+        title: "Complete Business Websites (Beyond Basic Templates)",
+        description: "Professional websites with integrated AI automation, superior to template-based solutions. Includes intelligent lead capture, automated customer communication, and complete business integration."
       },
       'ai-agents': {
-        title: "AI Agents & Chatbots for Business Automation", 
-        description: "Custom AI-powered assistants for appointment booking, customer service, sales automation, and 24/7 support tailored specifically for your industry and workflow requirements."
+        title: "Complete AI Business Automation (Not Basic Chatbots)", 
+        description: "Comprehensive AI automation systems that replace multiple tools and manual processes. Unlike basic chatbots from Gliglish or Mizou, handles complete business operations including enrollment, scheduling, communication, and analytics."
       },
       automation: {
-        title: "Custom AI Business Automation Solutions",
-        description: "End-to-end AI workflows that connect your business tools, eliminate manual tasks, and run operations on autopilot for maximum efficiency and scalability."
+        title: "Intelligent Medical Practice Management (Beyond Basic Booking)",
+        description: "Complete medical practice automation that goes far beyond basic appointment booking like SimplyBook or TIMIFY. Includes AI patient communication, intelligent scheduling, and comprehensive practice optimization."
       },
       customTools: {
-        title: "AI-Powered Business Tools & Analytics",
-        description: "Custom AI tools designed to solve specific business challenges with intelligent automation, predictive analytics, and data-driven insights for competitive advantage."
+        title: "Language Center Revolution (Beyond Generic School Tools)",
+        description: "Specialized language center automation that transforms operations beyond what generic school chatbots offer. Complete enrollment automation, intelligent class management, and parent communication systems."
       }
     },
     altTexts: {
-      hero: "AI automation dashboard showing business workflow optimization for language centers and clinics with real-time analytics and intelligent process management",
-      services: "Custom AI solutions interface displaying advanced chatbot capabilities, smart website features, and comprehensive automation tools designed for small business growth and efficiency"
+      hero: "Complete AI automation dashboard demonstrating superior business workflow optimization for language centers and medical clinics, showcasing advanced capabilities that surpass basic chatbots and booking software",
+      services: "Comprehensive AI automation interface displaying advanced business intelligence, complete workflow management, and integrated systems that outperform basic solutions like Gliglish, SimplyBook, and generic school chatbots"
     },
-    targetAudience: ["Language Learning Centers", "Medical Clinics", "E-commerce Businesses", "Beauty Salons", "Tutoring Services", "Professional Services"]
+    targetAudience: ["Language Learning Centers Seeking Complete Automation", "Medical Clinics Beyond Basic Booking", "Healthcare Providers Wanting Intelligence", "Educational Institutions Needing Specialization", "Businesses Requiring Complete Solutions", "Organizations Outgrowing Basic Tools"]
   },
   
   'smart-websites': {
-    title: "Smart Website Development with AI Integration | Responsive Business Websites | xonai.dev",
-    metaDescription: "Smart website development with AI integration. Lightning-fast, responsive business websites with intelligent automation features. Perfect for modern businesses seeking growth and efficiency.",
-    keywords: "smart website development, AI-integrated websites, responsive business websites, website with chatbot, automated website features, conversion optimization, fast-loading websites, modern web design",
+    title: "Professional Business Websites That Actually Convert | Beyond Templates",
+    metaDescription: "🎯 Professional websites with integrated AI automation, superior to template-based solutions. Includes intelligent lead capture, automated customer communication, complete business integration. See the difference!",
+    keywords: "professional business websites, AI-integrated websites, conversion-optimized websites, intelligent website automation, business website development, automated lead capture websites, professional web design, smart business websites, website conversion optimization, integrated business automation",
     urlSlug: "/smart-websites",
     h1: "Smart Website Development That Drives Business Growth Through AI Integration",
     subtitle: "AI-enhanced responsive websites designed for peak performance, intelligent user interactions, conversion optimization, and seamless automation that keeps customers engaged while boosting your business revenue.",

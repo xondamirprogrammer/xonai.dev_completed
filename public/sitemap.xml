@@ -9,49 +9,96 @@
   <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://xonai.dev/</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1200</image:loc>
-      <image:title>AI automation dashboard for business optimization</image:title>
-      <image:caption>Custom AI automation solutions interface showing workflow optimization tools</image:caption>
+      <image:title>Complete AI automation system outperforming basic chatbots and booking software for business optimization</image:title>
+      <image:caption>Superior AI automation solutions interface demonstrating comprehensive workflow optimization that beats basic solutions like Gliglish, SimplyBook, TIMIFY, and generic chatbots</image:caption>
     </image:image>
   </url>
   
-  <!-- Smart Websites Service Page -->
+  <!-- Complete vs Basic Solutions Comparison Pages -->
+  <url>
+    <loc>https://xonai.dev/vs-basic-chatbots</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://xonai.dev/vs-simplybook-timify-booking</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://xonai.dev/language-center-automation-vs-gliglish</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.94</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://xonai.dev/medical-automation-vs-basic-booking</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.94</priority>
+    <mobile:mobile/>
+  </url>
+  
   <url>
     <loc>https://xonai.dev/smart-websites</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1200</image:loc>
-      <image:title>Smart website development with AI integration</image:title>
-      <image:caption>Modern responsive website design featuring AI-powered automation</image:caption>
+      <image:title>Professional business website with integrated AI automation superior to template solutions</image:title>
+      <image:caption>Advanced responsive website design featuring comprehensive AI-powered business automation and intelligent conversion optimization</image:caption>
     </image:image>
   </url>
   
-  <!-- AI Agents Service Page -->
   <url>
     <loc>https://xonai.dev/ai-agents-chatbots</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://images.pexels.com/photos/8439093/pexels-photo-8439093.jpeg?auto=compress&cs=tinysrgb&w=1200</image:loc>
-      <image:title>AI chatbot interface for business automation</image:title>
-      <image:caption>AI agents and chatbots providing 24/7 customer service automation</image:caption>
+      <image:title>Complete AI business automation interface surpassing basic chatbots and booking systems</image:title>
+      <image:caption>Advanced AI agents providing comprehensive business automation, 24/7 intelligent customer service, and complete operational management beyond basic solutions</image:caption>
     </image:image>
   </url>
   
-  <!-- Key Sections with Anchors -->
+  <!-- Competitor Comparison Landing Pages -->
+  <url>
+    <loc>https://xonai.dev/complete-automation-vs-basic-tools</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.93</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://xonai.dev/why-businesses-choose-complete-ai-automation</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+    <mobile:mobile/>
+  </url>
+  
   <url>
     <loc>https://xonai.dev/#services</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
@@ -59,7 +106,7 @@
   
   <url>
     <loc>https://xonai.dev/#process</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <mobile:mobile/>
@@ -67,7 +114,7 @@
   
   <url>
     <loc>https://xonai.dev/#faq</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <mobile:mobile/>
@@ -76,7 +123,7 @@
   <!-- Contact Page - High Priority for Conversions -->
   <url>
     <loc>https://xonai.dev/#contact</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <mobile:mobile/>
@@ -84,24 +131,41 @@
   
   <!-- Additional Service-Specific URLs -->
   <url>
-    <loc>https://xonai.dev/ai-automation-language-centers</loc>
-    <lastmod>2025-01-11</lastmod>
+    <loc>https://xonai.dev/complete-language-center-automation</loc>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
   </url>
   
   <url>
-    <loc>https://xonai.dev/clinic-automation-solutions</loc>
-    <lastmod>2025-01-11</lastmod>
+    <loc>https://xonai.dev/intelligent-medical-practice-automation</loc>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
   </url>
   
   <url>
-    <loc>https://xonai.dev/small-business-ai-tools</loc>
-    <lastmod>2025-01-11</lastmod>
+    <loc>https://xonai.dev/complete-business-automation-systems</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <!-- High-Value Competitor Keywords -->
+  <url>
+    <loc>https://xonai.dev/alternative-to-gliglish-mizou-chatbots</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.87</priority>
+    <mobile:mobile/>
+  </url>
+  
+  <url>
+    <loc>https://xonai.dev/better-than-simplybook-timify-setmore</loc>
+    <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>

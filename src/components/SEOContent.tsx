@@ -7,14 +7,14 @@ interface SEOContentProps {
 // World-Class SEO-optimized content for each page
 export const seoContent = {
   'home': {
-    title: "Complete AI Automation | Language Centers & Medical Clinics | Beat Basic Tools",
-    metaDescription: "🚀 Complete AI automation for language centers & medical clinics! Beyond basic chatbots like Gliglish, booking software like SimplyBook. 40-60% efficiency boost, 24/7 support, 300-500% ROI!",
-    keywords: "complete AI automation, language center management system, AI clinic automation, intelligent appointment booking, business process automation, AI-powered patient communication, language school administration software, medical practice automation, smart clinic management, AI workflow optimization, automated patient scheduling, vs Gliglish vs SimplyBook vs TIMIFY, complete automation vs basic chatbots, intelligent business automation",
+    title: "Complete AI Automation | E-commerce, Language Centers & Clinics | Beat Basic Tools",
+    metaDescription: "🚀 Complete AI automation for e-commerce, language centers & clinics! Beyond basic chatbots like Gliglish, booking software like SimplyBook. 40-60% efficiency boost, 24/7 customer support, 25-40% sales increase!",
+    keywords: "complete AI automation, e-commerce AI chatbots, customer support automation, online store automation, AI sales assistant, language center management system, AI clinic automation, intelligent appointment booking, vs Gliglish vs SimplyBook vs TIMIFY, business process automation, AI-powered patient communication, language school administration software, medical practice automation, smart clinic management, AI workflow optimization, automated patient scheduling, e-commerce customer service, live chat automation, product recommendation AI, order tracking automation, conversion optimization AI, sales funnel automation, complete automation vs basic chatbots, comprehensive e-commerce software, intelligent business automation",
     urlSlug: "/",
     h1: "Complete AI Automation That Actually Works (Beyond Basic Tools)",
     h1Cycle: ["Complete", "Intelligent", "Superior", "Revolutionary"],
-    subtitle: "Why settle for basic tools like Gliglish or simple booking like SimplyBook? Get COMPLETE AI automation!",
-    longDescription: "Finally, AI automation that goes beyond basic chatbots and simple tools! While competitors like Gliglish only handle conversations and SimplyBook only manages appointments, our complete automation transforms your entire business. Language centers and medical clinics choose us for comprehensive automation, intelligent workflow optimization, and complete operational transformation. Stop piecing together multiple basic tools - get one intelligent system that handles everything.",
+    subtitle: "Why settle for basic e-commerce chatbots, simple booking like SimplyBook, or conversation AI like Gliglish? Get COMPLETE AI business automation. 40-60% efficiency boost, 25-40% sales increase, 24/7 operations!",
+    longDescription: "Finally, AI automation that goes beyond basic chatbots and simple tools! While competitors like Gliglish only handle conversations, SimplyBook only manages appointments, and generic e-commerce chatbots just answer FAQs, our complete automation transforms your entire business. E-commerce stores, language centers, and medical clinics choose us for comprehensive customer support, intelligent sales optimization, automated workflows, and complete operational transformation. Stop piecing together multiple basic tools - get one intelligent system that handles everything.",
     services: {
       'smart-websites': {
         title: "Smart Business Websites with AI (Beyond Basic Templates)",
@@ -38,7 +38,6 @@ export const seoContent = {
       services: "Comprehensive AI automation interface displaying advanced business intelligence, e-commerce customer support, complete workflow management, and integrated systems that outperform basic solutions like generic e-commerce chatbots, Gliglish, SimplyBook, and generic school tools"
     },
     targetAudience: ["E-commerce Stores Needing 24/7 Customer Support", "Online Retailers Seeking Sales Optimization", "Language Learning Centers Wanting Complete Automation", "Medical Clinics Beyond Basic Booking", "Healthcare Providers Needing Intelligence", "Educational Institutions Requiring Specialization", "Businesses Outgrowing Basic Tools", "Shopify & WooCommerce Store Owners"]
-    targetAudience: ["Language Learning Centers Wanting Complete Automation", "Medical Clinics Beyond Basic Booking", "Healthcare Providers Needing Intelligence", "Educational Institutions Requiring Specialization", "Businesses Outgrowing Basic Tools"]
   },
   
   'smart-websites': {

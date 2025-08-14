@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight } from 'lucide-react';
-import { AnimatedTextCycle, ThreeDBackground } from './ui/component';
 
 function GetStartedButton({ onClick }: { onClick?: () => void }) {
   const handleGetStartedClick = () => {

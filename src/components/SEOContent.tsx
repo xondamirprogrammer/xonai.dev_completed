@@ -7,7 +7,7 @@ interface SEOContentProps {
 // World-Class SEO-optimized content for each page
 export const seoContent = {
   'home': {
-    title: "Custom AI Automation Solutions for Language Centers, Clinics & SMEs | xonai.dev",
+    title: "AI Automation for Language Centers & Clinics | xonai.dev",
     metaDescription: "Custom AI automation solutions for language centers, clinics & businesses. AI-powered tools, smart websites & chatbots that boost efficiency. Get your AI assistant today!",
     keywords: "custom AI automation solutions, AI-powered business tools, AI automation services, workflow automation, AI for businesses, smart website development, AI agents and chatbots for business, language center AI, clinic automation, small business AI",
     urlSlug: "/",

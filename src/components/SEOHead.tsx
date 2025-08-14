@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface SEOHeadProps {
   title?: string;
@@ -18,7 +18,7 @@ export default function SEOHead({
   type = "website"
 }: SEOHeadProps) {
   
-  React.useEffect(() => {
+  useEffect(() => {
     // Update document title
     document.title = title;
     

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface SEOContentProps {
   page: 'home' | 'smart-websites' | 'ai-agents';
@@ -192,7 +192,7 @@ export const semanticKeywords = {
 export default function SEOContent({ page }: SEOContentProps) {
   const content = seoContent[page];
   
-  React.useEffect(() => {
+  useEffect(() => {
     // Enhanced document title and meta updates
     document.title = content.title;
     

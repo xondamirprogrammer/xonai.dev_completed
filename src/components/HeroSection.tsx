@@ -46,19 +46,19 @@ export default function HeroSection() {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
             Complete AI Automation That{" "}
             <AnimatedTextCycle
-              words={["Actually Works", "Beats Basic Tools", "Boosts Sales 40%", "Works 24/7"]}
+              words={["Actually Works", "Beats Chatbots", "Transforms Business", "Delivers ROI"]}
               interval={3000}
               className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400"
             />{" "}
-            (Beyond Basic Tools)
+            (Unlike Basic Solutions)
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto">
-            Why settle for basic <span className="text-orange-400 font-semibold">e-commerce chatbots</span>, conversation AI like <span className="text-blue-400 font-semibold">Gliglish</span>, or simple booking like <span className="text-purple-400 font-semibold">SimplyBook</span>? Get <span className="text-cyan-400 font-semibold">COMPLETE</span> AI automation!
+            Why settle for basic chatbots like <span className="text-blue-400 font-semibold">Gliglish</span> or simple booking like <span className="text-purple-400 font-semibold">SimplyBook</span>? Get <span className="text-cyan-400 font-semibold">COMPLETE</span> AI business automation.
           </p>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            🚀 <strong>40-60% efficiency boost</strong> • <strong>25-40% sales increase</strong> • <strong>24/7 customer support</strong> • <strong>300-500% ROI</strong> • E-commerce, clinics & language centers love us!
+            🚀 <strong>40-60% efficiency boost</strong> • <strong>24/7 operations</strong> • <strong>300-500% ROI</strong> • Language centers & clinics love us!
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">

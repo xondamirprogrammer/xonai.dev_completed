@@ -15,52 +15,14 @@
     <mobile:mobile/>
     <image:image>
       <image:loc>https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1200</image:loc>
-      <image:title>Complete AI automation system for e-commerce, clinics and language centers outperforming basic tools</image:title>
-      <image:caption>Superior AI automation solutions interface demonstrating comprehensive workflow optimization that beats basic e-commerce chatbots, Gliglish, SimplyBook, TIMIFY, and generic tools</image:caption>
+      <image:title>Complete AI automation system outperforming basic chatbots and booking software for business optimization</image:title>
+      <image:caption>Superior AI automation solutions interface demonstrating comprehensive workflow optimization that beats basic solutions like Gliglish, SimplyBook, TIMIFY, and generic chatbots</image:caption>
     </image:image>
-  </url>
-  
-  <!-- E-commerce AI Solutions -->
-  <url>
-    <loc>https://xonai.dev/e-commerce-ai-customer-support</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.96</priority>
-    <mobile:mobile/>
-    <image:image>
-      <image:loc>https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1200</image:loc>
-      <image:title>E-commerce AI customer support automation interface showing 24/7 intelligent assistance</image:title>
-      <image:caption>Advanced e-commerce AI automation system providing 24/7 customer support, order tracking, and sales optimization superior to basic chatbots</image:caption>
-    </image:image>
-  </url>
-  
-  <url>
-    <loc>https://xonai.dev/shopify-woocommerce-ai-automation</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <url>
-    <loc>https://xonai.dev/online-store-sales-automation</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.94</priority>
-    <mobile:mobile/>
   </url>
   
   <!-- Complete vs Basic Solutions Comparison Pages -->
   <url>
-    <loc>https://xonai.dev/complete-automation-vs-basic-ecommerce-chatbots</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.96</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <url>
-    <loc>https://xonai.dev/vs-basic-chatbots-complete-automation</loc>
+    <loc>https://xonai.dev/vs-basic-chatbots</loc>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
@@ -99,8 +61,8 @@
     <mobile:mobile/>
     <image:image>
       <image:loc>https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=1200</image:loc>
-      <image:title>Professional business website with integrated AI automation for e-commerce and service businesses</image:title>
-      <image:caption>Advanced responsive website design featuring comprehensive AI-powered business automation, e-commerce integration, and intelligent conversion optimization</image:caption>
+      <image:title>Professional business website with integrated AI automation superior to template solutions</image:title>
+      <image:caption>Advanced responsive website design featuring comprehensive AI-powered business automation and intelligent conversion optimization</image:caption>
     </image:image>
   </url>
   
@@ -112,45 +74,12 @@
     <mobile:mobile/>
     <image:image>
       <image:loc>https://images.pexels.com/photos/8439093/pexels-photo-8439093.jpeg?auto=compress&cs=tinysrgb&w=1200</image:loc>
-      <image:title>Complete AI business automation for e-commerce, healthcare and education surpassing basic tools</image:title>
-      <image:caption>Advanced AI agents providing comprehensive e-commerce automation, 24/7 intelligent customer support, healthcare management, and educational operations beyond basic solutions</image:caption>
+      <image:title>Complete AI business automation interface surpassing basic chatbots and booking systems</image:title>
+      <image:caption>Advanced AI agents providing comprehensive business automation, 24/7 intelligent customer service, and complete operational management beyond basic solutions</image:caption>
     </image:image>
   </url>
   
-  <!-- E-commerce Specific Pages -->
-  <url>
-    <loc>https://xonai.dev/24-7-ecommerce-customer-support-ai</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.92</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <url>
-    <loc>https://xonai.dev/ai-sales-conversion-optimization</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.91</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <url>
-    <loc>https://xonai.dev/intelligent-product-recommendations-ai</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-    <mobile:mobile/>
-  </url>
-  
   <!-- Competitor Comparison Landing Pages -->
-  <url>
-    <loc>https://xonai.dev/ecommerce-automation-vs-basic-chatbots</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.94</priority>
-    <mobile:mobile/>
-  </url>
-  
   <url>
     <loc>https://xonai.dev/complete-automation-vs-basic-tools</loc>
     <lastmod>2025-01-14</lastmod>
@@ -160,10 +89,10 @@
   </url>
   
   <url>
-    <loc>https://xonai.dev/why-ecommerce-chooses-complete-ai-automation</loc>
+    <loc>https://xonai.dev/why-businesses-choose-complete-ai-automation</loc>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.93</priority>
+    <priority>0.92</priority>
     <mobile:mobile/>
   </url>
   
@@ -202,18 +131,10 @@
   
   <!-- Additional Service-Specific URLs -->
   <url>
-    <loc>https://xonai.dev/complete-ecommerce-automation-system</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.89</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <url>
     <loc>https://xonai.dev/complete-language-center-automation</loc>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.88</priority>
+    <priority>0.8</priority>
     <mobile:mobile/>
   </url>
   
@@ -221,7 +142,7 @@
     <loc>https://xonai.dev/intelligent-medical-practice-automation</loc>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.87</priority>
+    <priority>0.8</priority>
     <mobile:mobile/>
   </url>
   
@@ -229,41 +150,16 @@
     <loc>https://xonai.dev/complete-business-automation-systems</loc>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.86</priority>
+    <priority>0.8</priority>
     <mobile:mobile/>
   </url>
   
-  <!-- E-commerce Competitor Keywords -->
-  <url>
-    <loc>https://xonai.dev/better-than-basic-ecommerce-chatbots</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.91</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <url>
-    <loc>https://xonai.dev/shopify-ai-automation-vs-basic-apps</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <url>
-    <loc>https://xonai.dev/advanced-ecommerce-customer-support-ai</loc>
-    <lastmod>2025-01-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.89</priority>
-    <mobile:mobile/>
-  </url>
-  
-  <!-- Language/Medical Competitor Keywords -->
+  <!-- High-Value Competitor Keywords -->
   <url>
     <loc>https://xonai.dev/alternative-to-gliglish-mizou-chatbots</loc>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.88</priority>
+    <priority>0.87</priority>
     <mobile:mobile/>
   </url>
   
@@ -271,7 +167,7 @@
     <loc>https://xonai.dev/better-than-simplybook-timify-setmore</loc>
     <lastmod>2025-01-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
     <mobile:mobile/>
   </url>
 </urlset>

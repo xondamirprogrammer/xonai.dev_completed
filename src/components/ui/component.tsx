@@ -1,47 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Button } from './button';
-import { Card, CardContent, CardHeader, CardTitle } from './card';
-import { Badge } from './badge';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { 
   ArrowRight, 
   ChevronRight, 
   Bot, 
   Zap, 
+  Globe, 
+  Users, 
   TrendingUp, 
-  Shield, 
-  Clock, 
-  Users,
-  ShoppingCart,
-  Heart,
-  GraduationCap,
-  Stethoscope,
+  Shield,
+  CheckCircle,
+  Star,
+  Calendar,
+  MessageSquare,
+  BarChart3,
   Menu,
   X,
-  Star,
-  CheckCircle,
-  ArrowUp
+  Brain,
+  Sparkles,
+  Target
 } from 'lucide-react';
-import SEOContent from '../SEOContent';
 import Navigation from '../Navigation';
+import SEOHead from '../SEOHead';
+import SEOContent, { seoContent, faqContent } from '../SEOContent';
+import HeroSection from '../HeroSection';
+import { supabase } from '@/lib/supabase';
+import { toast } from 'sonner';
 
 // Animated text cycle component
-export function AnimatedTextCycle({ 
+export const AnimatedTextCycle = ({ 
   words, 
-  interval = 3000, 
+  interval = 2000, 
   className = "" 
 }: { 
   words: string[]; 
   interval?: number; 
   className?: string; 
-}) {
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % words.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, interval);
+
     return () => clearInterval(timer);
   }, [words.length, interval]);
 
@@ -57,200 +66,243 @@ export function AnimatedTextCycle({
       {words[currentIndex]}
     </motion.span>
   );
-}
+};
 
 // 3D Background component
-export function ThreeDBackground() {
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, -200]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, 200]);
-
+export const ThreeDBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <motion.div
-        style={{ y: y1 }}
-        className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        style={{ y: y2 }}
-        className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-600/20 rounded-full blur-3xl"
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-background/90 to-background/95" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/50" />
+      <div className="absolute top-0 left-0 w-full h-full">
+        {[...Array(50)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-500/20 rounded-full"
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+            }}
+            animate={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+            }}
+            transition={{
+              duration: Math.random() * 20 + 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
-// Main website component
 export default function XonaiWebsite() {
   const [currentPage, setCurrentPage] = useState('home');
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    service: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleGetStarted = () => {
-    const contactElement = document.getElementById('contact');
-    if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth' });
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('contact_inquiries')
+        .insert([
+          {
+            name: contactForm.name,
+            email: contactForm.email,
+            company: contactForm.company || '',
+            service: contactForm.service || '',
+            message: contactForm.message,
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast.success('Message sent successfully! We\'ll get back to you within 24 hours.');
+      setContactForm({ name: '', email: '', company: '', service: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  return (
-    <div className="min-h-screen bg-background text-foreground">
+  const handleInputChange = (field: string, value: string) => {
+    setContactForm(prev => ({ ...prev, [field]: value }));
+  };
+
+  const renderHomePage = () => (
+    <>
+      <SEOHead />
       <SEOContent page="home" />
-      <Navigation setCurrentPage={setCurrentPage} currentPage={currentPage} />
       
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <ThreeDBackground />
-        
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Complete AI Automation That{" "}
-              <AnimatedTextCycle
-                words={["Actually Works", "Beats Basic Tools", "Boosts Sales 40%", "Works 24/7"]}
-                interval={3000}
-                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400"
-              />{" "}
-              (Beyond Basic Tools)
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto">
-              Why settle for basic <span className="text-orange-400 font-semibold">e-commerce chatbots</span>, conversation AI like <span className="text-blue-400 font-semibold">Gliglish</span>, or simple booking like <span className="text-purple-400 font-semibold">SimplyBook</span>? Get <span className="text-cyan-400 font-semibold">COMPLETE</span> AI automation!
-            </p>
-            
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              🚀 <strong>40-60% efficiency boost</strong> • <strong>25-40% sales increase</strong> • <strong>24/7 customer support</strong> • <strong>300-500% ROI</strong> • E-commerce, clinics & language centers love us!
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <Button 
-                className="group relative overflow-hidden" 
-                size="lg"
-                onClick={handleGetStarted}
-              >
-                <span className="mr-8 transition-opacity duration-500 group-hover:opacity-0">
-                  Get Started
-                </span>
-                <i className="absolute right-1 top-1 bottom-1 rounded-sm z-10 grid w-1/4 place-items-center transition-all duration-500 bg-primary-foreground/15 group-hover:w-[calc(100%-0.5rem)] group-active:scale-95">
-                  <ChevronRight size={16} strokeWidth={2} aria-hidden="true" />
-                </i>
-              </Button>
-              <Button variant="outline" size="lg" className="group">
-                View Our Work
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Why E-commerce, Clinics & Language Centers Choose Complete AI Automation
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Complete AI Solutions That Actually Work
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Stop piecing together basic tools! Get one intelligent system that handles everything
+              Why settle for basic tools when you can have <span className="text-cyan-400 font-semibold">complete automation</span>? 
+              Get systems that work together, not against each other.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* E-commerce AI */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Smart Websites */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
-              <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer">
+              <Card className="h-full hover:shadow-xl transition-shadow duration-300 border-2 hover:border-blue-500/50">
                 <CardHeader>
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-4">
-                      <ShoppingCart className="h-6 w-6 text-white" />
-                    </div>
-                    <Badge variant="secondary" className="bg-orange-100 text-orange-700">E-commerce</Badge>
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                    <Globe className="h-6 w-6 text-white" />
                   </div>
-                  <CardTitle className="text-xl">24/7 E-commerce AI (Beyond Basic Chatbots)</CardTitle>
+                  <CardTitle className="text-xl">Smart Business Websites</CardTitle>
+                  <CardDescription>
+                    Professional websites with integrated AI automation, superior to template solutions.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">
-                    Complete e-commerce automation: intelligent customer support, order tracking, product recommendations, sales optimization. Unlike basic e-commerce chatbots, increases sales 25-40%!
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />24/7 Customer Support</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Order Tracking Automation</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Product Recommendations</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Sales Conversion Optimization</li>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      AI chatbot integration
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      Automated lead capture
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      Performance optimization
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      24/7 customer support
+                    </li>
                   </ul>
+                  <Button 
+                    className="w-full group"
+                    onClick={() => setCurrentPage('smart-websites')}
+                  >
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Medical Practice AI */}
+            {/* AI Agents */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer">
+              <Card className="h-full hover:shadow-xl transition-shadow duration-300 border-2 hover:border-purple-500/50">
                 <CardHeader>
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mr-4">
-                      <Stethoscope className="h-6 w-6 text-white" />
-                    </div>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-700">Healthcare</Badge>
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-4">
+                    <Bot className="h-6 w-6 text-white" />
                   </div>
-                  <CardTitle className="text-xl">Medical Practice AI (Beyond SimplyBook)</CardTitle>
+                  <CardTitle className="text-xl">AI Agents & Complete Automation</CardTitle>
+                  <CardDescription>
+                    Comprehensive business automation beyond basic chatbots. 25-40% sales increase for e-commerce.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">
-                    Complete medical automation beyond basic booking like SimplyBook or TIMIFY. AI patient communication, intelligent scheduling, automated follow-ups. 30-50% efficiency improvement!
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Intelligent Appointment Booking</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Patient Communication</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Automated Reminders</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Follow-up Management</li>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      E-commerce customer support
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      Medical practice automation
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      Language center management
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      24/7 intelligent support
+                    </li>
                   </ul>
+                  <Button 
+                    className="w-full group"
+                    onClick={() => setCurrentPage('ai-agents')}
+                  >
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Language Center AI */}
+            {/* Custom Solutions */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer">
+              <Card className="h-full hover:shadow-xl transition-shadow duration-300 border-2 hover:border-green-500/50">
                 <CardHeader>
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
-                      <GraduationCap className="h-6 w-6 text-white" />
-                    </div>
-                    <Badge variant="secondary" className="bg-purple-100 text-purple-700">Education</Badge>
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center mb-4">
+                    <Zap className="h-6 w-6 text-white" />
                   </div>
-                  <CardTitle className="text-xl">Language Center AI (Beyond Gliglish)</CardTitle>
+                  <CardTitle className="text-xl">Custom AI Tools</CardTitle>
+                  <CardDescription>
+                    Tailored automation solutions that integrate with your existing workflow.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">
-                    Complete language center automation beyond conversation AI like Gliglish or Mizou. Enrollment automation, intelligent scheduling, multilingual support. 60-70% admin reduction!
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Automated Enrollment</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Class Scheduling</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Parent Communication</li>
-                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-500 mr-2" />Progress Tracking</li>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      Custom integrations
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      Workflow automation
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      Data analytics
+                    </li>
+                    <li className="flex items-center text-sm">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                      ROI tracking
+                    </li>
                   </ul>
+                  <Button className="w-full group">
+                    Get Started
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
@@ -260,55 +312,57 @@ export default function XonaiWebsite() {
 
       {/* Process Section */}
       <section id="process" className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Our Complete AI Automation Process
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Our Proven Process
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              From analysis to deployment, we ensure your AI automation delivers maximum ROI
+              From consultation to deployment, we ensure your success every step of the way.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             {[
-              {
-                icon: <Users className="h-8 w-8" />,
-                title: "1. Business Analysis",
-                description: "Deep dive into your current processes, pain points, and automation opportunities"
+              { 
+                icon: MessageSquare, 
+                title: "Discovery Call", 
+                description: "We analyze your business needs and identify automation opportunities." 
               },
-              {
-                icon: <Bot className="h-8 w-8" />,
-                title: "2. AI System Design",
-                description: "Custom AI solution architecture tailored to your specific industry and needs"
+              { 
+                icon: Brain, 
+                title: "Strategy Design", 
+                description: "Custom AI solution design tailored to your industry and goals." 
               },
-              {
-                icon: <Zap className="h-8 w-8" />,
-                title: "3. Development & Integration",
-                description: "Build and integrate AI automation with your existing business systems"
+              { 
+                icon: Sparkles, 
+                title: "Development", 
+                description: "Building and training your AI systems with industry-specific knowledge." 
               },
-              {
-                icon: <TrendingUp className="h-8 w-8" />,
-                title: "4. Launch & Optimize",
-                description: "Deploy, monitor, and continuously optimize for maximum performance and ROI"
+              { 
+                icon: Target, 
+                title: "Launch & Optimize", 
+                description: "Deployment with ongoing monitoring and performance optimization." 
               }
             ].map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
-                  {step.icon}
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <step.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-2">{step.title}</h3>
                 <p className="text-muted-foreground">{step.description}</p>
               </motion.div>
             ))}
@@ -318,183 +372,177 @@ export default function XonaiWebsite() {
 
       {/* FAQ Section */}
       <section id="faq" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Everything you need to know about complete AI automation
+            <p className="text-xl text-muted-foreground">
+              Everything you need to know about our AI automation solutions.
             </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="bg-background rounded-lg border px-6">
-                <AccordionTrigger className="text-left">
-                  Why choose complete AI automation over basic e-commerce chatbots or tools like SimplyBook?
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqContent.home.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  <span className="text-foreground font-medium">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  While basic e-commerce chatbots only handle simple FAQs and tools like SimplyBook only manage appointments, complete AI automation transforms your entire business operation. For e-commerce: intelligent customer support, automated order tracking, product recommendations, sales optimization. For clinics/language centers: smart scheduling, patient/student communication, enrollment automation. Result: 40-60% efficiency boost, 25-40% sales increase for e-commerce, 300-500% ROI across all industries.
+                <AccordionContent className="text-muted-foreground pt-4">
+                  {faq.answer}
                 </AccordionContent>
               </AccordionItem>
-
-              <AccordionItem value="item-2" className="bg-background rounded-lg border px-6">
-                <AccordionTrigger className="text-left">
-                  How does AI automation help e-commerce stores increase sales?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  AI automation helps e-commerce stores increase sales through intelligent customer support, automated product recommendations, order tracking, and sales optimization. Our complete automation systems typically result in 25-40% sales increases, 60% reduction in support workload, and 24/7 intelligent customer service that converts browsers into buyers.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-3" className="bg-background rounded-lg border px-6">
-                <AccordionTrigger className="text-left">
-                  What makes your AI solutions better than basic chatbots like Gliglish or Mizou?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Unlike conversation-only AI like Gliglish or basic school chatbots like Mizou, our complete automation handles your entire business workflow. We integrate with your existing systems, automate administrative tasks, provide intelligent analytics, and create seamless customer experiences. While others offer single-purpose tools, we provide comprehensive business transformation with measurable ROI.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4" className="bg-background rounded-lg border px-6">
-                <AccordionTrigger className="text-left">
-                  Can you help medical clinics with more than just basic appointment booking?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Absolutely! While basic booking software like SimplyBook or TIMIFY only handles appointments, our complete medical automation includes AI patient communication, intelligent scheduling optimization, automated follow-ups, prescription reminders, insurance verification, and comprehensive practice analytics. This results in 30-50% efficiency improvement and significantly better patient satisfaction.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-5" className="bg-background rounded-lg border px-6">
-                <AccordionTrigger className="text-left">
-                  How long does it take to implement complete AI automation?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Implementation timeline depends on complexity: Simple AI automation (customer service, basic scheduling) takes 1-2 weeks. Advanced systems (e-commerce integration, medical practice automation, language center management) take 2-4 weeks. Complex multi-system automation takes 4-8 weeks. We provide detailed timelines and start delivering value within the first week of implementation.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
+            ))}
+          </Accordion>
         </div>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Ready for Complete AI Automation?
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Ready to Transform Your Business?
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Join 100+ businesses that chose complete automation over basic tools
+            <p className="text-xl text-muted-foreground">
+              Get your free consultation and see how AI automation can boost your efficiency by 40-60%.
             </p>
           </motion.div>
 
-          <div className="max-w-2xl mx-auto">
-            <Card className="p-8">
-              <CardContent className="space-y-6">
-                <div className="text-center space-y-4">
-                  <h3 className="text-2xl font-bold">Get Your Free AI Automation Assessment</h3>
-                  <p className="text-muted-foreground">
-                    Discover how complete AI automation can transform your business
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <ShoppingCart className="h-8 w-8 mx-auto mb-2 text-orange-500" />
-                    <h4 className="font-semibold">E-commerce</h4>
-                    <p className="text-sm text-muted-foreground">25-40% sales boost</p>
+          <Card>
+            <CardHeader>
+              <CardTitle>Get Your Free Consultation</CardTitle>
+              <CardDescription>
+                Tell us about your business and we'll show you exactly how our AI solutions can help.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleContactSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name *</Label>
+                    <Input
+                      id="name"
+                      value={contactForm.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      required
+                    />
                   </div>
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <Stethoscope className="h-8 w-8 mx-auto mb-2 text-blue-500" />
-                    <h4 className="font-semibold">Medical Clinics</h4>
-                    <p className="text-sm text-muted-foreground">30-50% efficiency gain</p>
-                  </div>
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <GraduationCap className="h-8 w-8 mx-auto mb-2 text-purple-500" />
-                    <h4 className="font-semibold">Language Centers</h4>
-                    <p className="text-sm text-muted-foreground">60-70% admin reduction</p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="text-center space-y-2">
-                    <p className="font-semibold">📞 Call/WhatsApp: +998 90 132 64 67</p>
-                    <p className="font-semibold">📧 Email: xmirsaidov5@gmail.com</p>
-                    <p className="font-semibold">💬 Telegram: @M_X_Mirsaidov</p>
-                  </div>
-                  
-                  <div className="text-center">
-                    <Button 
-                      size="lg" 
-                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
-                    >
-                      Start Your AI Automation Project
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={contactForm.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      required
+                    />
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="company">Company</Label>
+                    <Input
+                      id="company"
+                      value={contactForm.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="service">Primary Interest</Label>
+                    <Select value={contactForm.service} onValueChange={(value) => handleInputChange('service', value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="smart-websites">Smart Website Development</SelectItem>
+                        <SelectItem value="ai-agents">AI Agents & Complete Automation</SelectItem>
+                        <SelectItem value="ecommerce-automation">E-commerce AI Automation</SelectItem>
+                        <SelectItem value="custom-tools">Custom AI Tools</SelectItem>
+                        <SelectItem value="consultation">General Consultation</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="message">Project Details *</Label>
+                  <Textarea
+                    id="message"
+                    value={contactForm.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    rows={4}
+                    placeholder="Tell us about your business, current challenges, and what you'd like to achieve with AI automation..."
+                    required
+                  />
+                </div>
+                
+                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Get Free Consultation"}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
-
-      {/* Scroll to top button */}
-      <ScrollToTop />
-    </div>
+    </>
   );
-}
 
-// Scroll to top component
-function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false);
+  const renderSmartWebsitesPage = () => (
+    <>
+      <SEOContent page="smart-websites" />
+      <div className="pt-20">
+        <div className="container mx-auto px-8 max-w-4xl py-20">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-8">
+            Smart Website Development
+          </h1>
+          <p className="text-xl text-center text-muted-foreground mb-12">
+            Professional websites with integrated AI automation, superior to template solutions.
+          </p>
+          {/* Add more smart websites content here */}
+        </div>
+      </div>
+    </>
+  );
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  const renderAIAgentsPage = () => (
+    <>
+      <SEOContent page="ai-agents" />
+      <div className="pt-20">
+        <div className="container mx-auto px-8 max-w-4xl py-20">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-8">
+            AI Agents & Complete Automation
+          </h1>
+          <p className="text-xl text-center text-muted-foreground mb-12">
+            Comprehensive business automation beyond basic chatbots. 25-40% sales increase for e-commerce.
+          </p>
+          {/* Add more AI agents content here */}
+        </div>
+      </div>
+    </>
+  );
 
   return (
-    <>
-      {isVisible && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-        >
-          <ArrowUp className="h-5 w-5" />
-        </motion.button>
-      )}
-    </>
+    <div className="min-h-screen bg-background">
+      <Navigation setCurrentPage={setCurrentPage} currentPage={currentPage} />
+      
+      {currentPage === 'home' && renderHomePage()}
+      {currentPage === 'smart-websites' && renderSmartWebsitesPage()}
+      {currentPage === 'ai-agents' && renderAIAgentsPage()}
+    </div>
   );
 }

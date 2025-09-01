@@ -1041,14 +1041,14 @@ function ContactSection() {
 
     try {
       const { error } = await supabase
-        .from('contact_inquiries')
+        .from('main_contact_submissions')
         .insert([
           {
             name: formData.name,
             email: formData.email,
             message: formData.message,
             service: formData.service,
-            company: '' // Default empty company
+            phone: '' // Default empty phone
           }
         ]);
 
@@ -1661,18 +1661,13 @@ function AIAgentsContact() {
 
     try {
       const { error } = await supabase
-        .from('ai_agent_inquiries')
+        .from('ai_agents_submissions')
         .insert([
           {
-            name: formData.name,
-            email: formData.email,
-            need: formData.need,
-            message: formData.message,
-            company: '', // Default empty company
-            agent_type: formData.need, // Map need to agent_type
-            use_case: formData.message, // Map message to use_case
-            budget: '', // Default empty budget
-            timeline: '' // Default empty timeline
+            full_name: formData.name,
+            email_address: formData.email,
+            project_type: formData.need,
+            project_description: formData.message
           }
         ]);
 
@@ -2276,17 +2271,13 @@ function SmartWebsitesContact() {
 
     try {
       const { error } = await supabase
-        .from('smart_website_inquiries')
+        .from('smart_websites_submissions')
         .insert([
           {
-            name: formData.fullName,
-            email: formData.emailAddress,
+            full_name: formData.fullName,
+            email_address: formData.emailAddress,
             project_type: formData.projectType,
-            message: formData.projectDescription,
-            company: '', // Default empty company
-            website_type: formData.projectType, // Map project_type to website_type
-            budget: '', // Default empty budget
-            timeline: '' // Default empty timeline
+            project_description: formData.projectDescription
           }
         ]);
 

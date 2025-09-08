@@ -41,10 +41,6 @@ body {
   overflow-x: hidden;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  /* Cross-browser normalization */
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
 
 h1 {
@@ -133,51 +129,9 @@ button:focus-visible {
 @layer base {
   * {
     @apply border-border;
-    /* Ensure consistent box-sizing across all browsers */
-    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground;
-  }
-  
-  /* Cross-browser container normalization */
-  .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
-  /* Responsive container max-widths */
-  @media (min-width: 640px) {
-    .container {
-      max-width: 640px;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .container {
-      max-width: 768px;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .container {
-      max-width: 1024px;
-    }
-  }
-  
-  @media (min-width: 1280px) {
-    .container {
-      max-width: 1280px;
-    }
-  }
-  
-  @media (min-width: 1536px) {
-    .container {
-      max-width: 1536px;
-    }
   }
 }
 

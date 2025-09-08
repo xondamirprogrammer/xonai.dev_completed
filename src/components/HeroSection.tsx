@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight } from 'lucide-react';
@@ -44,21 +45,17 @@ export default function HeroSection() {
           className="max-w-4xl mx-auto"
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Complete AI Automation That{" "}
+            Build the{" "}
             <AnimatedTextCycle
-              words={["Actually Works", "Beats Chatbots", "Transforms Business", "Delivers ROI"]}
+              words={["future", "impossible", "extraordinary", "intelligent"]}
               interval={3000}
               className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400"
             />{" "}
-            (Unlike Basic Solutions)
+            with AI
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto">
-            Why settle for basic chatbots like <span className="text-blue-400 font-semibold">Gliglish</span> or simple booking like <span className="text-purple-400 font-semibold">SimplyBook</span>? Get <span className="text-cyan-400 font-semibold">COMPLETE</span> AI business automation.
-          </p>
-          
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            🚀 <strong>40-60% efficiency boost</strong> • <strong>24/7 operations</strong> • <strong>300-500% ROI</strong> • Language centers & clinics love us!
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Transform your business with cutting-edge AI solutions, smart websites, and automation systems that work while you sleep.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">

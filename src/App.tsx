@@ -1,3 +1,4 @@
+import React from 'react';
 import XonaiWebsite from './components/ui/component';
 
 function App() {

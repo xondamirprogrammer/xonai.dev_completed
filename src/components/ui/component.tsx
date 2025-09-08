@@ -8,8 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, Globe, Brain, Zap, Bot, Cog, Puzzle, Rocket, MessageSquare, Settings, Sparkles, ArrowRight, Menu, X, Eye, Layers, Code, TrendingUp, ChevronDown, Plus, Minus, Phone, Mail, Send } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { supabase } from '@/lib/supabase';
-import { toast } from 'sonner';
 
 
 interface AnimatedTextCycleProps {
@@ -716,9 +714,9 @@ function WhatYouGetSection() {
                       </div>
 
                       <div className="space-y-3">
-                        <h4 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
+                        <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                           {item.title}
-                        </h4>
+                        </h3>
                         <p className="text-base sm:text-lg text-muted-foreground font-medium leading-relaxed">
                           {item.description}
                         </p>
@@ -1018,7 +1016,6 @@ function ContactSection() {
     message: '',
     service: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -1035,37 +1032,9 @@ function ContactSection() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const { error } = await supabase
-        .from('contact_inquiries')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            agent_type: formData.need,
-            service: formData.service,
-            company: '' // Default empty company
-        ]);
-
-      if (error) throw error;
-
-      toast.success('Message sent successfully! We\'ll get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        message: '',
-        service: ''
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast.error('Failed to send message. Please try again or contact us directly.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    console.log('Form submitted:', formData);
   };
 
   return (
@@ -1193,11 +1162,10 @@ function ContactSection() {
 
                     <Button
                       type="submit"
-                      disabled={isSubmitting}
                       className="w-full group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
                       size="lg"
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      Send Message
                       <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </form>
@@ -1227,7 +1195,6 @@ function ContactSection() {
                       <p className="text-sm text-muted-foreground">Phone</p>
                       <a
                         href="tel:+998901326467"
-                        aria-label="Call us at +998901326467"
                         className="text-foreground font-medium hover:text-primary transition-colors duration-300"
                       >
                         +998901326467
@@ -1246,7 +1213,6 @@ function ContactSection() {
                       <p className="text-sm text-muted-foreground">Email</p>
                       <a
                         href="mailto:xmirsaidov5@gmail.com?subject=Project%20Inquiry&body=Hello,%20I'm%20interested%20in%20your%20AI%20services..."
-                        aria-label="Send us an email at xmirsaidov5@gmail.com"
                         className="text-foreground font-medium hover:text-primary transition-colors duration-300"
                       >
                         xmirsaidov5@gmail.com
@@ -1267,7 +1233,6 @@ function ContactSection() {
                         href="https://t.me/M_X_Mirsaidov"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Contact us on Telegram @M_X_Mirsaidov"
                         className="text-foreground font-medium hover:text-primary transition-colors duration-300"
                       >
                         @M_X_Mirsaidov
@@ -1516,9 +1481,9 @@ function AIAgentsIncluded() {
                       {feature.icon}
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                         {feature.title}
-                      </h4>
+                      </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
                         {feature.description}
                       </p>
@@ -1563,7 +1528,7 @@ function AIAgentsPerfectFor() {
       title: "Marketplaces",
       description: "Help customers navigate and convert faster.",
       color: "from-blue-500 to-purple-500",
-      emoji: "🛒"
+      emoji: "?️"
     }
   ];
 
@@ -1611,9 +1576,9 @@ function AIAgentsPerfectFor() {
                     </div>
                     <div className="text-3xl">{client.emoji}</div>
                   </div>
-                  <h4 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     {client.title}
-                  </h4>
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     {client.description}
                   </p>
@@ -1637,7 +1602,6 @@ function AIAgentsContact() {
     need: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -1654,37 +1618,17 @@ function AIAgentsContact() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const { error } = await supabase
-        .from('ai_agent_inquiries')
-        .insert([
-          {
-            full_name: formData.name,
-            email_address: formData.email,
-            project_type: formData.need,
-            project_description: formData.message
-          }
-        ]);
-
-      if (error) throw error;
-
-      toast.success('Request sent successfully! We\'ll get back to you within 12 hours.');
-      setFormData({
-        name: '',
-        email: '',
-        need: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Error submitting AI agents form:', error);
-      toast.error('Failed to send request. Please try again or contact us directly.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    console.log('AI Agents Contact Form submitted:', formData);
+    // Add actual form submission logic here (e.g., API call)
+    alert('Thank you for your inquiry! We will get back to you within 12 hours.');
+    setFormData({
+      name: '',
+      email: '',
+      need: '',
+      message: ''
+    });
   };
 
   return (
@@ -1807,11 +1751,10 @@ function AIAgentsContact() {
 
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
                     className="w-full group bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300"
                     size="lg"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Request'}
+                    Send Request
                     <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </form>
@@ -1823,7 +1766,6 @@ function AIAgentsContact() {
                     href="https://t.me/M_X_Mirsaidov"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Contact us on Telegram for fastest response"
                     className="inline-flex items-center space-x-2 text-primary font-medium hover:underline"
                   >
                     <Send className="w-4 h-4" />
@@ -1969,9 +1911,9 @@ function WhySmartWebsites() {
                     <div className={`absolute inset-0 w-20 h-20 rounded-2xl bg-gradient-to-r ${benefit.color} opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500 mx-auto`}></div>
                   </div>
 
-                  <h4 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
                     {benefit.title}
-                  </h4>
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
                     {benefit.description}
                   </p>
@@ -2057,9 +1999,9 @@ function WhatsIncluded() {
                       {feature.icon}
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                         {feature.title}
-                      </h4>
+                      </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
                         {feature.description}
                       </p>
@@ -2152,9 +2094,9 @@ function PerfectFor() {
                     </div>
                     <div>
                        <div className="text-3xl leading-none">{client.emoji}</div>
-                       <h4 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight pt-1">
+                       <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight pt-1">
                         {client.title}
-                      </h4>
+                      </h3>
                     </div>
                   </div>
                   <p className="text-muted-foreground leading-relaxed text-lg">
@@ -2247,7 +2189,6 @@ function SmartWebsitesContact() {
     projectType: '',
     projectDescription: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -2264,37 +2205,17 @@ function SmartWebsitesContact() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const { error } = await supabase
-        .from('smart_website_inquiries')
-        .insert([
-          {
-            full_name: formData.fullName,
-            project_type: formData.projectType,
-            website_type: formData.projectType,
-            project_description: formData.projectDescription
-          }
-        ]);
-
-      if (error) throw error;
-
-      toast.success('Message sent successfully! We\'ll get back to you within 24 hours.');
-      setFormData({
-        fullName: '',
-        emailAddress: '',
-        projectType: '',
-        projectDescription: ''
-      });
-    } catch (error) {
-      console.error('Error submitting smart websites form:', error);
-      toast.error('Failed to send message. Please try again or contact us directly.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    console.log('Smart Websites Contact Form submitted:', formData);
+    // Add actual form submission logic here (e.g., API call)
+    alert('Thank you for your inquiry! We will get back to you within 24 hours.');
+    setFormData({
+      fullName: '',
+      emailAddress: '',
+      projectType: '',
+      projectDescription: ''
+    });
   };
 
   return (
@@ -2417,11 +2338,10 @@ function SmartWebsitesContact() {
 
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
                     className="w-full group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300"
                     size="lg"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    Send Message
                     <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </form>
@@ -2432,7 +2352,6 @@ function SmartWebsitesContact() {
                       href="https://t.me/M_X_Mirsaidov"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Contact us on Telegram for fastest response"
                       className="text-primary font-medium hover:underline"
                     >
                       @M_X_Mirsaidov

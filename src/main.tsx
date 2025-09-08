@@ -2,6 +2,7 @@ import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import { Toaster } from 'sonner';
 
 // Force dark mode on application start
 function AppWithDarkMode() {
@@ -33,7 +34,17 @@ function AppWithDarkMode() {
     return () => observer.disconnect();
   }, []);
 
-  return <App />;
+  return (
+    <>
+      <App />
+      <Toaster 
+        position="top-right"
+        expand={false}
+        richColors
+        theme="dark"
+      />
+    </>
+  );
 }
 
 createRoot(document.getElementById('root')!).render(

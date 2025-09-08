@@ -1041,15 +1041,14 @@ function ContactSection() {
 
     try {
       const { error } = await supabase
-        .from('main_contact_submissions')
+        .from('contact_inquiries')
         .insert([
           {
             name: formData.name,
             email: formData.email,
-            message: formData.message,
+            agent_type: formData.need,
             service: formData.service,
-            phone: '' // Default empty phone
-          }
+            company: '' // Default empty company
         ]);
 
       if (error) throw error;
@@ -1661,7 +1660,7 @@ function AIAgentsContact() {
 
     try {
       const { error } = await supabase
-        .from('ai_agents_submissions')
+        .from('ai_agent_inquiries')
         .insert([
           {
             full_name: formData.name,
@@ -2271,12 +2270,12 @@ function SmartWebsitesContact() {
 
     try {
       const { error } = await supabase
-        .from('smart_websites_submissions')
+        .from('smart_website_inquiries')
         .insert([
           {
             full_name: formData.fullName,
-            email_address: formData.emailAddress,
             project_type: formData.projectType,
+            website_type: formData.projectType,
             project_description: formData.projectDescription
           }
         ]);

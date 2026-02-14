@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, Globe, Brain, Zap, Bot, Cog, Puzzle, Rocket, MessageSquare, Settings, Sparkles, ArrowRight, Menu, X, Eye, Layers, Code, TrendingUp, ChevronDown, Plus, Minus, Phone, Mail, Send } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { supabase } from '@/lib/supabase';
 
 
 interface AnimatedTextCycleProps {
@@ -1016,6 +1017,8 @@ function ContactSection() {
     message: '',
     service: ''
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -1032,9 +1035,23 @@ function ContactSection() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setSubmitting(true);
+    setSubmitStatus('idle');
+    const { error } = await supabase.from('contact_submissions').insert({
+      name: formData.name,
+      email: formData.email,
+      service: formData.service,
+      message: formData.message,
+    });
+    setSubmitting(false);
+    if (error) {
+      setSubmitStatus('error');
+      return;
+    }
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', message: '', service: '' });
   };
 
   return (
@@ -1162,12 +1179,19 @@ function ContactSection() {
 
                     <Button
                       type="submit"
-                      className="w-full group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+                      disabled={submitting}
+                      className="w-full group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
                       size="lg"
                     >
-                      Send Message
-                      <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      {submitting ? 'Sending...' : 'Send Message'}
+                      {!submitting && <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                     </Button>
+                    {submitStatus === 'success' && (
+                      <p className="text-green-400 text-sm text-center mt-3">Thank you! We'll get back to you soon.</p>
+                    )}
+                    {submitStatus === 'error' && (
+                      <p className="text-red-400 text-sm text-center mt-3">Something went wrong. Please try again.</p>
+                    )}
                   </form>
                 </div>
               </Card>
@@ -1602,6 +1626,8 @@ function AIAgentsContact() {
     need: '',
     message: ''
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -1618,17 +1644,23 @@ function AIAgentsContact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('AI Agents Contact Form submitted:', formData);
-    // Add actual form submission logic here (e.g., API call)
-    alert('Thank you for your inquiry! We will get back to you within 12 hours.');
-    setFormData({
-      name: '',
-      email: '',
-      need: '',
-      message: ''
+    setSubmitting(true);
+    setSubmitStatus('idle');
+    const { error } = await supabase.from('ai_agents_inquiries').insert({
+      name: formData.name,
+      email: formData.email,
+      need: formData.need,
+      message: formData.message,
     });
+    setSubmitting(false);
+    if (error) {
+      setSubmitStatus('error');
+      return;
+    }
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', need: '', message: '' });
   };
 
   return (
@@ -1751,12 +1783,19 @@ function AIAgentsContact() {
 
                   <Button
                     type="submit"
-                    className="w-full group bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300"
+                    disabled={submitting}
+                    className="w-full group bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50"
                     size="lg"
                   >
-                    Send Request
-                    <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    {submitting ? 'Sending...' : 'Send Request'}
+                    {!submitting && <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
+                  {submitStatus === 'success' && (
+                    <p className="text-green-400 text-sm text-center mt-3">Thank you! We'll get back to you within 12 hours.</p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-red-400 text-sm text-center mt-3">Something went wrong. Please try again.</p>
+                  )}
                 </form>
                 <div className="text-center mt-6">
                   <p className="text-muted-foreground text-sm mb-3">
@@ -2189,6 +2228,8 @@ function SmartWebsitesContact() {
     projectType: '',
     projectDescription: ''
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -2205,17 +2246,23 @@ function SmartWebsitesContact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Smart Websites Contact Form submitted:', formData);
-    // Add actual form submission logic here (e.g., API call)
-    alert('Thank you for your inquiry! We will get back to you within 24 hours.');
-    setFormData({
-      fullName: '',
-      emailAddress: '',
-      projectType: '',
-      projectDescription: ''
+    setSubmitting(true);
+    setSubmitStatus('idle');
+    const { error } = await supabase.from('smart_websites_inquiries').insert({
+      full_name: formData.fullName,
+      email_address: formData.emailAddress,
+      project_type: formData.projectType,
+      project_description: formData.projectDescription,
     });
+    setSubmitting(false);
+    if (error) {
+      setSubmitStatus('error');
+      return;
+    }
+    setSubmitStatus('success');
+    setFormData({ fullName: '', emailAddress: '', projectType: '', projectDescription: '' });
   };
 
   return (
@@ -2338,12 +2385,19 @@ function SmartWebsitesContact() {
 
                   <Button
                     type="submit"
-                    className="w-full group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300"
+                    disabled={submitting}
+                    className="w-full group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50"
                     size="lg"
                   >
-                    Send Message
-                    <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    {submitting ? 'Sending...' : 'Send Message'}
+                    {!submitting && <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
+                  {submitStatus === 'success' && (
+                    <p className="text-green-400 text-sm text-center mt-3">Thank you! We'll get back to you within 24 hours.</p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-red-400 text-sm text-center mt-3">Something went wrong. Please try again.</p>
+                  )}
                 </form>
                 <div className="text-center mt-6">
                   <p className="text-muted-foreground text-sm">

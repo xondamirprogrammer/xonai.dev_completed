@@ -100,9 +100,18 @@ export default function Navigation({ setCurrentPage, currentPage }: NavigationPr
           className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity duration-300"
           onClick={handleLogoClick}
         >
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">X</span>
-          </div>
+          <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" className="rounded-lg">
+            <defs>
+              <linearGradient id="nav_logo_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#5C93FF"/>
+                <stop offset="100%" stopColor="#C940E8"/>
+              </linearGradient>
+            </defs>
+            <rect width="40" height="40" fill="url(#nav_logo_gradient)"/>
+            <g transform="translate(8, 8)">
+              <path fill="white" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+            </g>
+          </svg>
           <span className="text-xl font-bold text-foreground">xonai.dev</span>
         </div>
 

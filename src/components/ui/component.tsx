@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, Globe, Brain, Zap, Bot, Cog, Puzzle, Rocket, MessageSquare, Settings, Sparkles, ArrowRight, Menu, X, Eye, Layers, Code, TrendingUp, ChevronDown, Plus, Phone, Mail, Send } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from '@/lib/supabase';
+import NotificationToast from '@/components/NotificationToast';
 
 
 interface AnimatedTextCycleProps {
@@ -1018,7 +1019,8 @@ function ContactSection() {
     service: ''
   });
   const [submitting, setSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showToast, setShowToast] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -1038,7 +1040,7 @@ function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitError(false);
     const { error } = await supabase.from('main_contact_submissions').insert({
       name: formData.name,
       email: formData.email,
@@ -1047,15 +1049,16 @@ function ContactSection() {
     });
     setSubmitting(false);
     if (error) {
-      setSubmitStatus('error');
+      setSubmitError(true);
       return;
     }
-    setSubmitStatus('success');
+    setShowToast(true);
     setFormData({ name: '', email: '', message: '', service: '' });
   };
 
   return (
     <section id="contact" className="relative w-full py-20 md:py-32 bg-gradient-to-b from-background via-muted/10 to-background/50 overflow-hidden">
+      <NotificationToast isVisible={showToast} onClose={() => setShowToast(false)} />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/3 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute top-40 right-20 w-96 h-96 bg-purple-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -1186,10 +1189,7 @@ function ContactSection() {
                       {submitting ? 'Sending...' : 'Send Message'}
                       {!submitting && <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                     </Button>
-                    {submitStatus === 'success' && (
-                      <p className="text-green-400 text-sm text-center mt-3">Thank you! We'll get back to you soon.</p>
-                    )}
-                    {submitStatus === 'error' && (
+                    {submitError && (
                       <p className="text-red-400 text-sm text-center mt-3">Something went wrong. Please try again.</p>
                     )}
                   </form>
@@ -1627,7 +1627,8 @@ function AIAgentsContact() {
     message: ''
   });
   const [submitting, setSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showToast, setShowToast] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -1647,7 +1648,7 @@ function AIAgentsContact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitError(false);
     const { error } = await supabase.from('ai_agents_submissions').insert({
       full_name: formData.name,
       email_address: formData.email,
@@ -1656,15 +1657,16 @@ function AIAgentsContact() {
     });
     setSubmitting(false);
     if (error) {
-      setSubmitStatus('error');
+      setSubmitError(true);
       return;
     }
-    setSubmitStatus('success');
+    setShowToast(true);
     setFormData({ name: '', email: '', need: '', message: '' });
   };
 
   return (
     <section id="ai-agents-contact" className="relative py-20 md:py-32 bg-gradient-to-b from-background via-muted/10 to-background/50 overflow-hidden">
+      <NotificationToast isVisible={showToast} onClose={() => setShowToast(false)} />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-80 h-80 bg-purple-500/3 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute top-40 right-20 w-96 h-96 bg-pink-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -1790,10 +1792,7 @@ function AIAgentsContact() {
                     {submitting ? 'Sending...' : 'Send Request'}
                     {!submitting && <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
-                  {submitStatus === 'success' && (
-                    <p className="text-green-400 text-sm text-center mt-3">Thank you! We'll get back to you within 12 hours.</p>
-                  )}
-                  {submitStatus === 'error' && (
+                  {submitError && (
                     <p className="text-red-400 text-sm text-center mt-3">Something went wrong. Please try again.</p>
                   )}
                 </form>
@@ -2161,7 +2160,8 @@ function SmartWebsitesContact() {
     projectDescription: ''
   });
   const [submitting, setSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showToast, setShowToast] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -2181,7 +2181,7 @@ function SmartWebsitesContact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitError(false);
     const { error } = await supabase.from('smart_websites_submissions').insert({
       full_name: formData.fullName,
       email_address: formData.emailAddress,
@@ -2190,15 +2190,16 @@ function SmartWebsitesContact() {
     });
     setSubmitting(false);
     if (error) {
-      setSubmitStatus('error');
+      setSubmitError(true);
       return;
     }
-    setSubmitStatus('success');
+    setShowToast(true);
     setFormData({ fullName: '', emailAddress: '', projectType: '', projectDescription: '' });
   };
 
   return (
     <section id="smart-websites-contact" className="relative py-20 md:py-32 bg-gradient-to-b from-background via-muted/10 to-background/50 overflow-hidden">
+      <NotificationToast isVisible={showToast} onClose={() => setShowToast(false)} />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-80 h-80 bg-blue-500/3 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute top-40 right-20 w-96 h-96 bg-purple-500/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -2324,10 +2325,7 @@ function SmartWebsitesContact() {
                     {submitting ? 'Sending...' : 'Send Message'}
                     {!submitting && <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
-                  {submitStatus === 'success' && (
-                    <p className="text-green-400 text-sm text-center mt-3">Thank you! We'll get back to you within 24 hours.</p>
-                  )}
-                  {submitStatus === 'error' && (
+                  {submitError && (
                     <p className="text-red-400 text-sm text-center mt-3">Something went wrong. Please try again.</p>
                   )}
                 </form>

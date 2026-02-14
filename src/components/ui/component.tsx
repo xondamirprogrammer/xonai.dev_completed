@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ChevronRight, Globe, Brain, Zap, Bot, Cog, Puzzle, Rocket, MessageSquare, Settings, Sparkles, ArrowRight, Menu, X, Eye, Layers, Code, TrendingUp, ChevronDown, Plus, Minus, Phone, Mail, Send } from 'lucide-react';
+import { ChevronRight, Globe, Brain, Zap, Bot, Cog, Puzzle, Rocket, MessageSquare, Settings, Sparkles, ArrowRight, Menu, X, Eye, Layers, Code, TrendingUp, ChevronDown, Plus, Phone, Mail, Send } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from '@/lib/supabase';
 
@@ -1039,7 +1039,7 @@ function ContactSection() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitStatus('idle');
-    const { error } = await supabase.from('contact_submissions').insert({
+    const { error } = await supabase.from('main_contact_submissions').insert({
       name: formData.name,
       email: formData.email,
       service: formData.service,
@@ -1648,11 +1648,11 @@ function AIAgentsContact() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitStatus('idle');
-    const { error } = await supabase.from('ai_agents_inquiries').insert({
-      name: formData.name,
-      email: formData.email,
-      need: formData.need,
-      message: formData.message,
+    const { error } = await supabase.from('ai_agents_submissions').insert({
+      full_name: formData.name,
+      email_address: formData.email,
+      project_type: formData.need,
+      project_description: formData.message,
     });
     setSubmitting(false);
     if (error) {
@@ -2153,74 +2153,6 @@ function PerfectFor() {
   );
 }
 
-// Smart Websites CTA Section
-function SmartWebsitesCTA() {
-  return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-b from-background via-muted/5 to-background overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <Card className="relative bg-gradient-to-r from-card/60 via-card/40 to-card/60 backdrop-blur-xl border-border/40 p-8 sm:p-12 hover:border-primary/40 transition-all duration-500 group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-center space-x-4 mb-8">
-                <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse delay-300"></div>
-                <div className="w-3 h-3 bg-cyan-500 rounded-full animate-pulse delay-700"></div>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                We don't just build websites —{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
-                  we build smart systems
-                </span>{" "}
-                that work for you.
-              </h2>
-
-              <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-                Ready to transform your online presence with intelligent design and automation?
-                Let's create something extraordinary together.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <Button
-                  size="lg"
-                  className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 px-10 py-4"
-                  onClick={() => {
-                    const contactElement = document.getElementById('smart-websites-contact');
-                    if (contactElement) {
-                      contactElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
-                  Get a Free Demo
-                  <Sparkles className="ml-2 h-5 w-5 transition-transform group-hover:scale-110" />
-                </Button>
-                <Button variant="outline" size="lg" className="group border-primary/30 hover:border-primary/50 hover:bg-primary/5 px-10 py-4">
-                  View Case Studies
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </div>
-            </div>
-          </Card>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
 function SmartWebsitesContact() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -2250,7 +2182,7 @@ function SmartWebsitesContact() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitStatus('idle');
-    const { error } = await supabase.from('smart_websites_inquiries').insert({
+    const { error } = await supabase.from('smart_websites_submissions').insert({
       full_name: formData.fullName,
       email_address: formData.emailAddress,
       project_type: formData.projectType,

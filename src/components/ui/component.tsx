@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ChevronRight, Globe, Brain, Zap, Bot, Cog, Puzzle, Rocket, MessageSquare, Settings, Sparkles, ArrowRight, Menu, X, Eye, Layers, Code, TrendingUp, ChevronDown, Plus, Phone, Mail, Send } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { supabase } from '@/lib/supabase';
 import NotificationToast from '@/components/NotificationToast';
 
 
@@ -1041,19 +1040,37 @@ function ContactSection() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitError(false);
-    const { error } = await supabase.from('main_contact_submissions').insert({
-      name: formData.name,
-      email: formData.email,
-      service: formData.service,
-      message: formData.message,
-    });
-    setSubmitting(false);
-    if (error) {
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            formType: 'main_contact',
+            name: formData.name,
+            email: formData.email,
+            service: formData.service,
+            message: formData.message,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      setShowToast(true);
+      setFormData({ name: '', email: '', message: '', service: '' });
+    } catch (error) {
       setSubmitError(true);
-      return;
+    } finally {
+      setSubmitting(false);
     }
-    setShowToast(true);
-    setFormData({ name: '', email: '', message: '', service: '' });
   };
 
   return (
@@ -1649,19 +1666,37 @@ function AIAgentsContact() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitError(false);
-    const { error } = await supabase.from('ai_agents_submissions').insert({
-      full_name: formData.name,
-      email_address: formData.email,
-      project_type: formData.need,
-      project_description: formData.message,
-    });
-    setSubmitting(false);
-    if (error) {
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            formType: 'ai_agents',
+            fullName: formData.name,
+            emailAddress: formData.email,
+            projectType: formData.need,
+            projectDescription: formData.message,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      setShowToast(true);
+      setFormData({ name: '', email: '', need: '', message: '' });
+    } catch (error) {
       setSubmitError(true);
-      return;
+    } finally {
+      setSubmitting(false);
     }
-    setShowToast(true);
-    setFormData({ name: '', email: '', need: '', message: '' });
   };
 
   return (
@@ -2182,19 +2217,37 @@ function SmartWebsitesContact() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitError(false);
-    const { error } = await supabase.from('smart_websites_submissions').insert({
-      full_name: formData.fullName,
-      email_address: formData.emailAddress,
-      project_type: formData.projectType,
-      project_description: formData.projectDescription,
-    });
-    setSubmitting(false);
-    if (error) {
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/submit-form`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            formType: 'smart_websites',
+            fullName: formData.fullName,
+            emailAddress: formData.emailAddress,
+            projectType: formData.projectType,
+            projectDescription: formData.projectDescription,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      setShowToast(true);
+      setFormData({ fullName: '', emailAddress: '', projectType: '', projectDescription: '' });
+    } catch (error) {
       setSubmitError(true);
-      return;
+    } finally {
+      setSubmitting(false);
     }
-    setShowToast(true);
-    setFormData({ fullName: '', emailAddress: '', projectType: '', projectDescription: '' });
   };
 
   return (
